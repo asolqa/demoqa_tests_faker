@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+dependencies {
+    //noinspection VulnerableLibrariesLocal
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:5.10.0",
+            "com.github.javafaker:javafaker:1.0.2",
+            "com.codeborne:selenide:7.2.1"
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
