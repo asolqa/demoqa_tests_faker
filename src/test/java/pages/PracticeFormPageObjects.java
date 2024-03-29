@@ -1,15 +1,14 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Faker;
 import pages.components.CalendarComponent;
 import pages.components.ModalFormComponent;
 
-import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+
 public class PracticeFormPageObjects {
     private final SelenideElement formWrapper =  $(".practice-form-wrapper"),
 
@@ -81,8 +80,8 @@ public class PracticeFormPageObjects {
 
         return this;
     }
-    public PracticeFormPageObjects uploadFile() {
-        fileInput.uploadFromClasspath("avatar.png");
+    public PracticeFormPageObjects uploadFile(String filename) {
+        fileInput.uploadFromClasspath(filename);
 
         return this;
     }

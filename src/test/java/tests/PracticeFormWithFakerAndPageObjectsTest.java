@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPageObjects;
 import data.DataFactory;
@@ -8,13 +9,20 @@ import data.Student;
 import java.util.Locale;
 
 public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
+
     PracticeFormPageObjects practiceFormPage = new PracticeFormPageObjects();
 
     DataFactory dataFactory = new DataFactory(Locale.ENGLISH);
 
+    Student student;
+
+    @BeforeEach
+    void setUp() {
+        student = dataFactory.newStudent();
+    }
+
     @Test
     void fillFullFormTest() {
-        Student student = dataFactory.newStudent();
 
         practiceFormPage.openPage()
                 .setFirstName(student.getFirstname())
@@ -25,7 +33,7 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
                 .setDateOfBirth(student.getDayOfBirth(), student.getMonthOfBirth(), student.getYearOfBirth())
                 .setSubject(student.getSubject())
                 .setHobbies(student.getHobby())
-                .uploadFile()
+                .uploadFile(student.getAvatar())
                 .setAddress(student.getAddress())
                 .setState(student.getState())
                 .setCity(student.getCity())
@@ -39,14 +47,13 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
                 .checkResult("Date of Birth", student.getDateOfBirthPrettified())
                 .checkResult("Subjects", student.getSubject())
                 .checkResult("Hobbies", student.getHobby())
-                .checkResult("Picture", "avatar.png")
+                .checkResult("Picture", student.getAvatar())
                 .checkResult("Address", student.getAddress())
                 .checkResult("State and City", student.getState() + " " + student.getCity());
     }
 
     @Test
     void fillMinDataSetTest() {
-        Student student = dataFactory.newStudent();
 
         //Name, gender, number
         practiceFormPage.openPage()
@@ -63,8 +70,7 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
     }
 
     @Test
-    void negativeNoNumberTest () {
-        Student student = dataFactory.newStudent();
+    void negativeNoNumberTest() {
 
         //Name, gender but no number
         practiceFormPage.openPage()
@@ -74,18 +80,18 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
                 .submitForm();
 
         //Assertions
-       practiceFormPage.checkNoModal();
+        practiceFormPage.checkNoModal();
     }
 
     @Test
-    void negativeWrongEmailTest () {
-        Student student = dataFactory.newStudent();
+    void negativeWrongEmailTest() {
+        String randomText = dataFactory.randomText(10);
 
         //Name, gender, number, wrong format email
         practiceFormPage.openPage()
                 .setFirstName(student.getFirstname())
                 .setLastName(student.getLastname())
-                .setEmail("vladpetrov.com")
+                .setEmail(randomText)
                 .setGender(student.getGender())
                 .setNumber(student.getUserPhone())
                 .submitForm();

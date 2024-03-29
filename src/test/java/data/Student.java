@@ -28,6 +28,7 @@ public class Student {
 
     private String city;
 
+    private String avatar;
 
     public String getFirstname() {
         return firstname;
@@ -137,11 +138,20 @@ public class Student {
         this.city = city;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
                 ", userPhone='" + userPhone + '\'' +
                 ", dayOfBirth='" + dayOfBirth + '\'' +
@@ -152,6 +162,7 @@ public class Student {
                 ", address='" + address + '\'' +
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }
