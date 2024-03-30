@@ -17,7 +17,7 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
     Student student;
 
     @BeforeEach
-    void setUp() {
+    void prepareData() {
         student = dataFactory.newStudent();
     }
 

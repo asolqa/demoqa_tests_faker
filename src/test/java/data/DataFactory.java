@@ -21,8 +21,9 @@ public class DataFactory {
 
         String firstname = faker.name().firstName();
         String lastName = faker.name().lastName();
+        String email = faker.internet().emailAddress(firstname + "." + lastName);
         String gender = faker.options().option("Male", "Female", "Other");
-        String userPhone = faker.regexify("[0-9]{10}");
+        String userPhone = faker.phoneNumber().subscriberNumber(10);
         LocalDate dateOfBirth = toLocalDate(faker.date().birthday());
         String dayOfBirth = String.format("%02d", dateOfBirth.getDayOfMonth());
         String monthOfBirth = dateOfBirth.getMonth().getDisplayName(TextStyle.FULL, locale);
@@ -36,7 +37,7 @@ public class DataFactory {
         Student student = new Student();
         student.setFirstname(firstname);
         student.setLastname(lastName);
-        student.setEmail(String.format("%s.%s@example.com", firstname, lastName));
+        student.setEmail(email);
         student.setGender(gender);
         student.setUserPhone(userPhone);
         student.setDayOfBirth(dayOfBirth);
