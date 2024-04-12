@@ -13,9 +13,10 @@ import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
+@SuppressWarnings("UnusedReturnValue")
 public class Attach {
     @Attachment(value = "{attachName}", type = "image/png")
-    public static byte[] screenshotAs(String attachName) {
+    public static byte[] screenshotAs(@SuppressWarnings("unused") String attachName) {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
@@ -25,7 +26,7 @@ public class Attach {
     }
 
     @Attachment(value = "{attachName}", type = "text/plain")
-    public static String attachAsText(String attachName, String message) {
+    public static String attachAsText(@SuppressWarnings("unused") String attachName, String message) {
         return message;
     }
 
