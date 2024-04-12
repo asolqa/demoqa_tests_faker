@@ -148,21 +148,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                ", userPhone='" + userPhone + '\'' +
-                ", dayOfBirth='" + dayOfBirth + '\'' +
-                ", monthOfBirth='" + monthOfBirth + '\'' +
-                ", yearOfBirth='" + yearOfBirth + '\'' +
-                ", subject='" + subject + '\'' +
-                ", hobby='" + hobby + '\'' +
-                ", address='" + address + '\'' +
-                ", state='" + state + '\'' +
-                ", city='" + city + '\'' +
-                ", avatar='" + avatar + '\'' +
-                '}';
+        return String.join(",", firstname, lastname, email, gender, userPhone, dayOfBirth, monthOfBirth, yearOfBirth, subject, hobby, address, state, city, avatar);
     }
 }

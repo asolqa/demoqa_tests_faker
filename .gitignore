@@ -16,3 +16,6 @@
 
 # Gradle
 .gradle
+
+build
+allure-results

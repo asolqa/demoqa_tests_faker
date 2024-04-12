@@ -1,12 +1,13 @@
 package tests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.*;
 import pages.PracticeFormPageObjects;
 import data.DataFactory;
 import data.Student;
 
 import java.util.Locale;
+
 
 public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
 
@@ -17,11 +18,16 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
     Student student;
 
     @BeforeEach
+    @Step("Prepare data")
     void prepareData() {
+
         student = dataFactory.newStudent();
+
     }
 
     @Test
+    @Tag("regression")
+    @DisplayName("Positive case: providing all data fo registration")
     void fillFullFormTest() {
 
         practiceFormPage.openPage()
@@ -53,6 +59,8 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
     }
 
     @Test
+    @Tag("regression")
+    @DisplayName("Positive case: minimum data required")
     void fillMinDataSetTest() {
 
         //Name, gender, number
@@ -70,6 +78,8 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
     }
 
     @Test
+    @Tag("smoke")
+    @DisplayName("Negative case: no user number provided")
     void negativeNoNumberTest() {
 
         //Name, gender but no number
@@ -84,6 +94,9 @@ public class PracticeFormWithFakerAndPageObjectsTest extends TestBase {
     }
 
     @Test
+    @Tags({ @Tag("regression"),
+            @Tag("smoke") })
+    @DisplayName("Negative case: incorrect e-mail format ")
     void negativeWrongEmailTest() {
         String randomText = dataFactory.randomText(10);
 
