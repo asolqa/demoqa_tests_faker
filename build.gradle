@@ -44,6 +44,7 @@ test {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 
     testLogging {
         lifecycle {
