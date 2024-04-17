@@ -1,5 +1,6 @@
 package helpers;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
@@ -31,17 +32,23 @@ public class Attach {
     }
 
     public static void browserConsoleLogs() {
-        attachAsText(
-                "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
-        );
+        if(Configuration.browser.equals("chrome")) {
+            attachAsText(
+                    "Browser console logs",
+                    String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+            );
+        }
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
-        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
-                + "'type='video/mp4'></video></body></html>";
+        if(Configuration.browser.equals("chrome")) {
+            return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
+                    + getVideoUrl()
+                    + "'type='video/mp4'></video></body></html>";
+        } else {
+            return null;
+        }
     }
 
     public static URL getVideoUrl() {
