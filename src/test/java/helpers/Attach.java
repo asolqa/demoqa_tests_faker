@@ -32,17 +32,15 @@ public class Attach {
     }
 
     public static void browserConsoleLogs() {
-        if(Configuration.browser.equals("chrome")) {
-            attachAsText(
-                    "Browser console logs",
-                    String.join("\n", Selenide.getWebDriverLogs(BROWSER))
-            );
-        }
+        attachAsText(
+                "Browser console logs",
+                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+        );
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
-        if(Configuration.browser.equals("chrome")) {
+        if (Configuration.browser.equals("chrome")) {
             return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
                     + getVideoUrl()
                     + "'type='video/mp4'></video></body></html>";
