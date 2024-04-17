@@ -47,7 +47,9 @@ public class Attach {
                     + getVideoUrl()
                     + "'type='video/mp4'></video></body></html>";
         } else {
-            return null;
+            return """
+                    <html><body>No video available for this browser</body></html>
+                    """;
         }
     }
 
